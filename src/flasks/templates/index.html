@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+        {% block content %}     
+        <h1 class="text-center mt-5 mb-5">Rekomendasi Produk</h1>
+      
+        <div class="container mb-5">
+          <div class="row d-flex justify-content-center">
+              <div class="col-6">
+                  <form action="/", method="POST">
+                      <div class="input-group">
+                          <input type="search" name="keyword" class="form-control rounded" placeholder="Tulis produk yang kamu mau cari!"/>
+                          <button type="submit" class="btn btn-primary">Cari</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+        </div>
+      
+        <div class="container mb-5">
+          <h2 class="mb-5">Top Products</h2>
+          <div class="row">
+              {% for index, row in top_products.iterrows() %}
+                  <div class="col-3">
+                      <div class="card mb-4">
+                          <img src="{{ row['img_link'] }}" class="card-img-top center" style="margin:10px 10px 0px 10px;width: auto;height: 228px;">
+                          <div class="card-body">
+                              <h6 class="card-title">{{ row['product_name'] }}</h6>
+                              <p class="card-text">Price: ${{ row['actual_price'] }}</p>
+                          </div>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+        </div>
+{% endblock %}
